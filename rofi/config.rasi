@@ -1,0 +1,12 @@
+
+//@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+
+//@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+
+//@theme "/home/anton/.local/share/rofi/themes/rounded-template.rasi"
+
+//@theme "/home/anton/.local/share/rofi/themes/simple-tokyonight.rasi"
+
+@theme "/home/anton/.local/share/rofi/themes/rounded-template.rasi"
