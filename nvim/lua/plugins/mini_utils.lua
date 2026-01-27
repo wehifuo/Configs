@@ -1,57 +1,64 @@
 return {
 	{
-		'numToStr/Comment.nvim',
+		"numToStr/Comment.nvim",
 		opts = {
 			-- add any options here
-		}
+		},
 	},
 
-	{ 
-		'nvim-mini/mini.surround',
-		opts ={
-		
-		  custom_surroundings = nil,
+	{
+		"nvim-mini/mini.surround",
+		opts = {
 
-		  highlight_duration = 500,
+			custom_surroundings = nil,
 
-		  mappings = {
-			add = 'sa', -- Add surrounding in Normal and Visual modes
-			delete = 'sd', -- Delete surrounding
-			find = 'sf', -- Find surrounding (to the right)
-			find_left = 'sF', -- Find surrounding (to the left)
-			highlight = 'sh', -- Highlight surrounding
-			replace = 'sr', -- Replace surrounding
+			highlight_duration = 500,
 
-			suffix_last = 'l', -- Suffix to search with "prev" method
-			suffix_next = 'n', -- Suffix to search with "next" method
-		  },
+			mappings = {
+				add = "sa", -- Add surrounding in Normal and Visual modes
+				delete = "sd", -- Delete surrounding
+				find = "sf", -- Find surrounding (to the right)
+				find_left = "sF", -- Find surrounding (to the left)
+				highlight = "sh", -- Highlight surrounding
+				replace = "sr", -- Replace surrounding
 
-		  n_lines = 20,
+				suffix_last = "l", -- Suffix to search with "prev" method
+				suffix_next = "n", -- Suffix to search with "next" method
+			},
 
-		  respect_selection_type = false,
+			n_lines = 20,
 
-		  search_method = 'cover',
+			respect_selection_type = false,
 
-		  silent = false,
-		}
+			search_method = "cover",
+
+			silent = false,
+		},
 	},
 	{
-		'windwp/nvim-autopairs',
+		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = true
+		config = true,
 		-- use opts = {} for passing setup options
 		-- this is equivalent to setup({}) function
 	},
 	{
-	  'Wansmer/treesj',
-	  keys = {
-		'<space>m',
-		'<space>j',
-		'<space>s',
+		"Wansmer/treesj",
+		keys = {
+			"<space>m",
+			"<space>j",
+			"<space>s",
+		},
+		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+		config = function()
+			require("treesj").setup({ --[[ your config ]]
+			})
+		end,
 	},
-	  dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
-	  config = function()
-		require('treesj').setup({--[[ your config ]]})
-	  end,
-	}
+	{
+		{
+			"ThePrimeagen/vim-be-good",
+			cmd = "VimBeGood",
+		},
+	},
 }
