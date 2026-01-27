@@ -10,3 +10,9 @@
 //@theme "/home/anton/.local/share/rofi/themes/simple-tokyonight.rasi"
 
 @theme "/home/anton/.local/share/rofi/themes/rounded-template.rasi"
+
+listview {
+    fixed-height: true;
+    lines: 7;      /* Показывать всегда ровно 10 строк */
+    dynamic: false;  /* Запретить динамическое изменение размера */
+}
