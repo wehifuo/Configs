@@ -40,7 +40,7 @@ return {
 				},
 				center = {
 					{
-						icon = " ",
+						icon = "󰍉 ",
 						desc = " Find File",
 						key = "f",
 						action = "Telescope find_files",
@@ -64,6 +64,12 @@ return {
 						desc = " Find text",
 						icon = " ",
 						key = "g",
+					},
+					{
+						action = "Yazi cwd",
+						desc = " Yazi",
+						icon = "󰉓 ",
+						key = "y",
 					},
 					{
 						action = 'lua require("lazy").home()',

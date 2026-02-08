@@ -6,7 +6,8 @@ return{
 			"html",
 			"tailwindcss",
 			"lua_ls",
-			"pyright"
+			"pyright",
+			"ast_grep"
 		}
 	},
     dependencies = {

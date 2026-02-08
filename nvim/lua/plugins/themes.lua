@@ -26,5 +26,6 @@ return {
 		priority = 1000,
 		config = true,
 		opts = {},
-	}
+	},
+	{'mellow-theme/mellow.nvim'},
 }

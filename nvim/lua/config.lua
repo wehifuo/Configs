@@ -1,15 +1,16 @@
-vim.api.nvim_set_hl(0, "Normal", {bg = "#1e1e1e"})
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "#1e1e1e" })
-vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#1e1e1e" })
+-- vim.api.nvim_set_hl(0, "Normal", {bg = "#1e1e1e"})
+-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "#1e1e1e" })
+-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#1e1e1e" })
 
 vim.opt.number = true                            
 vim.opt.relativenumber = true   
 vim.opt.ignorecase = true  
 vim.opt.clipboard = "unnamedplus"
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
+vim.opt.tabstop = 3
+vim.opt.softtabstop = 3
 vim.opt.shiftwidth = 4
 
+vim.opt.signcolumn = "yes"
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -55,3 +56,21 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove({ "r", "o" })
   end,
 })
+
+vim.api.nvim_create_autocmd("BufReadPost", {  -- Чтобы сразу работал treesitter
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
+
+local my_themes = { "default", "gruvbox", "desert", "flexoki", "habamax", "kanagawa-paper", "lackluster", "lackluster-night", "lackluster-mint", "lackluster-dark", "lackluster-hack", "mellow", "slate", "sorbet", "unokai" }
+
+vim.api.nvim_create_user_command('MyThemes', function()
+    vim.ui.select(my_themes, {
+        prompt = 'Выберите тему из списка избранных:',
+    }, function(choice)
+        if choice then
+            vim.cmd.colorscheme(choice)
+        end
+    end)
+end, {})
