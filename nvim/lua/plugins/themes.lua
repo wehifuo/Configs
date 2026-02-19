@@ -1,11 +1,11 @@
-return {	
-  -- Тема Flexoki
+return {
+	-- Тема Flexoki
 	{
-            		'kepano/flexoki-neovim', 
-		name = 'flexoki',
-		priority = 1000, 
+		"kepano/flexoki-neovim",
+		name = "flexoki",
+		priority = 1000,
 	},
-	{ 
+	{
 		"slugbyte/lackluster.nvim",
 		lazy = false,
 		priority = 1000,
@@ -16,10 +16,10 @@ return {
 		end,
 	},
 	{
-	  "thesimonho/kanagawa-paper.nvim",
-	  lazy = false,
-	  priority = 1000,
-	  opts = {},
+		"thesimonho/kanagawa-paper.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
 	},
 	{
 		"ellisonleao/gruvbox.nvim",
@@ -27,5 +27,6 @@ return {
 		config = true,
 		opts = {},
 	},
-	{'mellow-theme/mellow.nvim'},
+	{ "mellow-theme/mellow.nvim" },
+	{ "marko-cerovac/material.nvim" },
 }

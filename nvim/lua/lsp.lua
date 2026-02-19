@@ -22,7 +22,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- opts.desc = "Show LSP type definitions"
     -- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
-
     opts.desc = "Show bunnnr diagnostics"
     keymap.set("n", "<leader>lm", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 

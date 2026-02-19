@@ -15,6 +15,6 @@ vim.keymap.set('n', '<C-b>', '<C-b>zz')
 vim.keymap.set('n', '<leader>fn', require('telescope.builtin').find_files)
 
 vim.keymap.set('n', '<leader>fr', function() vim.lsp.buf.format() end)
-
+vim.keymap.set('n', '<leader>t', ':tabnew <CR>', {silent = true, noremap = true})
 
 vim.keymap.set('n', 'gt', 'gt', { noremap = true })
