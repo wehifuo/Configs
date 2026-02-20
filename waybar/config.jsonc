@@ -13,12 +13,17 @@
         "network",
         "battery"
     ],
-    "clock": {
-        "interval": 60,
-        "format": "{:%H:%M}",
-        "max-length": 25,
-        "tooltip": false
-    },
+	 "clock": {
+		  "format": "{:%I:%M}", 
+		  "format-alt": "{:%A, %B %d, %Y (%I:%M)}", 
+		  "tooltip-format": "<tt><span size='13pt'>{calendar}</span></tt>"
+		  },
+    // "clock": {
+    //     "interval": 60,
+    //     "format": "{:%H:%M}",
+    //     "max-length": 25,
+    //     "tooltip": false
+    // },
     "temperature": {
         "hwmon-path-abs": "/sys/class/hwmon/",
         "input-filename": "temp1_input",
