@@ -29,4 +29,6 @@ return {
 	},
 	{ "mellow-theme/mellow.nvim" },
 	{ "marko-cerovac/material.nvim" },
+	{"rebelot/kanagawa.nvim"},
+	{"sainnhe/everforest"},
 }

@@ -64,10 +64,10 @@ vim.api.nvim_create_autocmd("BufReadPost", { -- Чтобы сразу работ
 })
 
 local my_themes = {
-	"default",
 	"gruvbox",
 	"desert",
 	"flexoki",
+	"kanagawa-dragon",
 	"habamax",
 	"kanagawa-paper-ink",
 	"kanagawa-paper-canvas",
@@ -82,6 +82,8 @@ local my_themes = {
 	"unokai",
 	"material-darker",
 	"material-lighter",
+	"everforest",
+	"quiet",
 }
 
 vim.api.nvim_create_user_command("MyThemes", function()

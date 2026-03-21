@@ -50,6 +50,9 @@ return {
 			"<space>s",
 		},
 		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+		opts = {
+			max_join_length = 300,
+		},
 		config = function()
 			require("treesj").setup({ --[[ your config ]]
 			})

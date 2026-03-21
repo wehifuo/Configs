@@ -3,7 +3,7 @@
     border-radius: 0px;
 
     font-family: "Dejavu sans mono";
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
 
     min-height: 0;
@@ -51,7 +51,7 @@ tooltip label {
     color: #090A0D;
     min-width: 55px;
     transition: all 0.3s ease-in-out;
-    font-size: 13px;
+    font-size: 14px;
 
 }
 
