@@ -8,7 +8,7 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
         ensure_installed = {
-            "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc","javascript", "typescript", "tsx", "python", "json"
+            "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc","javascript", "typescript", "tsx", "python", "json", "nim", "conf"
         },
         -- Autoinstall languages that are not installed
         auto_install = true,

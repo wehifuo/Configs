@@ -1,4 +1,4 @@
-local keymap = vim.keymap -- for conciseness
+local keymap = vim.keymap 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
@@ -19,8 +19,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     opts.desc = "Show LSP implementations"
     keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
 
+	 vim.keymap.set('n', 'gT', ':tab split | lua vim.lsp.buf.definition()<CR>', { desc = 'LSP определение в новой вкладке' })
     -- opts.desc = "Show LSP type definitions"
-    -- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+    -- keymap.set("n", "gT", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
     opts.desc = "Show bunnnr diagnostics"
     keymap.set("n", "<leader>lm", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file

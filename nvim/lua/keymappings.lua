@@ -1,7 +1,7 @@
 
 vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle <CR>', {noremap = true, silent = true})
 vim.keymap.set('i','jk','<Esc>', { silent = true})
--- Перемещение между окнами через Ctrl + стрелки (или h,j,k,l)
+
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Окно влево' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Окно вправо' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Окно вниз' })
@@ -18,3 +18,12 @@ vim.keymap.set('n', '<leader>fr', function() vim.lsp.buf.format() end)
 vim.keymap.set('n', '<leader>t', ':tabnew <CR>', {silent = true, noremap = true})
 
 vim.keymap.set('n', 'gt', 'gt', { noremap = true })
+vim.keymap.set("x", "p", [["_dP]])
+
+-- load the session for the current directory
+vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end)
+-- select a session to load
+vim.keymap.set("n", "<leader>qS", function() require("persistence").select() end)
+-- load the last session
+vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end)
+

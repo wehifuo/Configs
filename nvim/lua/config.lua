@@ -1,7 +1,3 @@
--- vim.api.nvim_set_hl(0, "Normal", {bg = "#1e1e1e"})
--- vim.api.nvim_set_hl(0, "NormalNC", { bg = "#1e1e1e" })
--- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#1e1e1e" })
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ignorecase = true
@@ -9,9 +5,10 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.tabstop = 3
 vim.opt.softtabstop = 3
 vim.opt.shiftwidth = 4
-
+vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
--- Bootstrap lazy.nvim
+
+-- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -28,27 +25,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- import your plugins
 		{ import = "plugins" },
 		{ import = "plugins.lsp" },
 	},
-	-- Configure any other settings here. See the documentation for more details.
-	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "habamax" } },
-	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = { enabled = true, notify = false },
 })
 
-vim.cmd.colorscheme("flexoki")
+vim.cmd.colorscheme("kanagawa-dragon")
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
@@ -59,13 +49,17 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("BufReadPost", { -- Чтобы сразу работал treesitter
 	callback = function()
+
+		if vim.bo.filetype == "qf" then
+			return
+		end
+
 		vim.treesitter.start()
 	end,
 })
 
 local my_themes = {
 	"gruvbox",
-	"desert",
 	"flexoki",
 	"kanagawa-dragon",
 	"habamax",
@@ -77,13 +71,12 @@ local my_themes = {
 	"lackluster-dark",
 	"lackluster-hack",
 	"mellow",
-	"slate",
-	"sorbet",
 	"unokai",
-	"material-darker",
 	"material-lighter",
 	"everforest",
 	"quiet",
+	"bamboo",
+	"bamboo-multiplex",
 }
 
 vim.api.nvim_create_user_command("MyThemes", function()
@@ -99,19 +92,42 @@ end, {})
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
 	callback = function()
-		-- Настройка: vertical (вертикально), size (ширина в колонках)
 		vim.keymap.set("n", "<leader>r", ':w<CR>:TermExec cmd="python %" direction=vertical size=80<CR>', {
 			buffer = true,
 			desc = "Run Python file in vertical terminal",
 		})
 	end,
 })
+-- разобраться
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "cpp",
+	callback = function()
+		-- vim.keymap.set("n", "<leader>r", ':w<CR>:TermExec cmd="g++ -std=c++20 -O2 % -o %:r && ./%:r" direction=vertical size=80<CR>', {
+		vim.keymap.set(
+			"n",
+			"<leader>r",
+			':w<CR>:TermExec cmd="g++ -std=c++20 -O2 % -o %:r -lcrypto && ./%:r" direction=vertical size=80<CR>',
+			{
+				buffer = true,
+				desc = "Compile and Run C++ in vertical terminal",
+			}
+		)
+	end,
+})
 
-function _G.set_terminal_keymaps()
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "cs",
+	callback = function()
+		vim.keymap.set("n", "<leader>r", ':w<CR>:TermExec cmd="dotnet run" direction=vertical size=80<CR>', {
+			buffer = true,
+			desc = "Run C# project in vertical terminal",
+		})
+	end,
+})
+
+function _G.set_terminal_keymaps() -- работа с терминалом terminal
 	local opts = { buffer = 0 }
-	-- Esc выход из режима вставки в терминале (чтобы можно было перемещаться)
 	vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-	-- Быстрая навигация между окнами из режима терминала
 	vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
 	vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
 	vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)

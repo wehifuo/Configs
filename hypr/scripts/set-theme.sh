@@ -23,11 +23,16 @@ case $1 in
 		ln -sf ~/.config/waybar/dark.css ~/.config/waybar/style.css
         ;;
 
-    "dark3")
+    "teeth")
         hyprctl keyword general:col.active_border "rgba(e7e7e7ff)"
-        hyprctl hyprpaper wallpaper "eDP-1,/home/anton/Downloads/wallpaper3.jpg"
+        hyprctl hyprpaper wallpaper "eDP-1,/home/anton/Downloads/teeth_wallpaper.jpg"
 
 		ln -sf ~/.config/waybar/dark.css ~/.config/waybar/style.css
+        ;;
+
+    "win")
+        hyprctl hyprpaper wallpaper "eDP-1,/home/anton/Downloads/wallpaper4.jpg"
+
         ;;
 esac
 

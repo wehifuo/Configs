@@ -146,6 +146,7 @@ desc = { fg = "#575653", italic = true } # tx-3
 hovered = { bg = "#1C1B1A" } # bg-2
 footer = { fg = "#CECDC3", bg = "#282726", bold = true } # tx, ui
 
+
 [filetype]
 rules = [
   # Images
@@ -156,20 +157,21 @@ rules = [
   { mime = "audio/*", fg = "#D0A215" }, # ye
 
   # Broken symbolic link
-  { name = "*", is = "orphan", fg = "#575653", crossed = true }, # tx-3
-  { name = "*/", is = "orphan", fg = "#575653", crossed = true }, # tx-3
+  { url = "*", is = "orphan", fg = "#575653", crossed = true }, # tx-3
+  { url = "*/", is = "orphan", fg = "#575653", crossed = true }, # tx-3
 
   # Symbolic links
-  { name = "*", is = "link", fg = "#3AA99F" }, # cy
-  { name = "*/", is = "link", fg = "#3AA99F" }, # cy
+  { url = "*", is = "link", fg = "#3AA99F" }, # cy
+  { url = "*/", is = "link", fg = "#3AA99F" }, # cy
 
   # Executable
-  { name = "*", is = "exec", fg = "#879A39" }, # gr
+  { url = "*", is = "exec", fg = "#879A39" }, # gr
 
   # Empty files
   { mime = "inode/empty", fg = "#575653" }, # tx-3
 
   # Fallback
-  { name = "*", fg = "#878580" }, # tx-2
-  { name = "*/", fg = "#CECDC3" } # tx
+  { url = "*", fg = "#878580" }, # tx-2
+  { url = "*/", fg = "#CECDC3" } # tx
 ]
+

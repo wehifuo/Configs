@@ -40,6 +40,12 @@ return {
 				},
 				center = {
 					{
+						icon = " ",
+						desc = " Session cur dir",
+						key = "s",
+						action = "lua require('persistence').load()",
+					},
+					{
 						icon = "󰍉 ",
 						desc = " Find File",
 						key = "f",
@@ -53,18 +59,18 @@ return {
 						action = "Telescope oldfiles",
 						group = "DiagnosticHint",
 					},
-					{
-						action = "ene | startinsert",
-						desc = " New file",
-						icon = " ",
-						key = "n",
-					},
-					{
-						action = "Telescope live_grep",
-						desc = " Find text",
-						icon = " ",
-						key = "g",
-					},
+					-- {
+					-- 	action = "ene | startinsert",
+					-- 	desc = " New file",
+					-- 	icon = " ",
+					-- 	key = "n",
+					-- },
+					-- {
+					-- 	action = "Telescope live_grep",
+					-- 	desc = " Find text",
+					-- 	icon = " ",
+					-- 	key = "g",
+					-- },
 					{
 						action = "Yazi cwd",
 						desc = " Yazi",
