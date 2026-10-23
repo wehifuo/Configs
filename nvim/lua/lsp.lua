@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --
     opts.desc = "Go to next diagnostic"
     keymap.set("n", "]d", function()
-      vsm.diagnostic.jump({ count = 1, float = true })
+      vim.diagnostic.jump({ count = 1, float = true })
     end, opts) -- jump to next diagnostic in buffer
 
     opts.desc = "Show documentation for what is under cursor"

@@ -13,11 +13,11 @@ linemode       = "none"
 show_hidden    = false 
 show_symlink   = true
 scrolloff      = 5
-mouse_events   = [ "click", "scroll" ]
+mouse_events   = [ "click", "scroll", "drag" ]
 title_format   = "Yazi: {cwd}"
 
 [preview]
-wrap            = "no"
+wrap            = "yes"
 tab_size        = 2
 max_width       = 1200
 max_height      = 1000
@@ -33,6 +33,18 @@ edit = [
 	{ run = 'nvim %s', block = true, desc = "Neovim", for="unix" },
 	{ run = 'kitty --class float-kitty nvim %s', orphan = true, desc = "fast neovim" },
 	{ run = 'code %s',orphan = true, desc = "VsCode"}, 
+]
+
+office = [
+	{ run = "libreoffice %s", orphan = true, desc = "LibreOffice" },
+]
+
+imv = [
+	{ run = "imv %s", orphan = true, desc = "imv" },
+]
+
+ouch = [
+	{ run = "ouch decompress %s", orphan = true, desc = "Ouch" },
 ]
 
 play = [
@@ -61,12 +73,15 @@ download = [
 
 [open]
 rules = [
-	# Folder
-	{ url = "*/", use = "open"},
 	# Text
 	{ mime = "text/*", use = ["edit", "reveal" ] },
+	# Office
+	{ mime = "application/msword", use = "office" },
+	{ mime = "application/vnd.ms-excel", use = "office" },
+	{ mime = "application/vnd.openxmlformats-officedocument.*", use = "office" },
+	{ mime = "application/vnd.oasis.opendocument.*", use = "office" },
 	# Image
-	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "image/*", use = "imv" },
 	# Media
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	
@@ -74,7 +89,7 @@ rules = [
    # # Docx
    # { mime = "application/docx", name = "*.docx", use = "Open" },
 	
-   { mime = "application/pdf", name = "*.pdf", use = "open" },
+   { mime = "application/pdf", use = "open" },
 	# Archive
 	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
 	# JSON
@@ -85,7 +100,7 @@ rules = [
 	# Virtual file system
 	{ mime = "vfs/{absent,stale}", use = "download" },
 	# Fallback
-	{ url = "*", use = ["edit", "open", "reveal", "wolfram" ] },
+	{ url = "*", use = ["open", "reveal" ] },
 ]
 
 [tasks]
@@ -168,3 +183,19 @@ sort_by      	 = "none"
 sort_sensitive = false
 sort_reverse 	 = false
 sort_translit  = false
+
+# Git status в linemode
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"
+
+# Предпросмотр архивов через ouch
+[[plugin.prepend_previewers]]
+mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+run  = "ouch"

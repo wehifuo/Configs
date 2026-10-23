@@ -1,35 +1,38 @@
 return {
-	-- Тема Flexoki
+	-- Тема по умолчанию: должна загружаться сразу
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+
+	-- Остальные темы грузятся по требованию через :MyThemes
 	{
 		"kepano/flexoki-neovim",
 		name = "flexoki",
+		lazy = true,
 		priority = 1000,
 	},
 	{
 		"slugbyte/lackluster.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
-		init = function()
-			vim.cmd.colorscheme("lackluster")
-			-- vim.cmd.colorscheme("lackluster-hack") -- my favorite
-			-- vim.cmd.colorscheme("lackluster-mint")
-		end,
 	},
 	{
 		"thesimonho/kanagawa-paper.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		opts = {},
 	},
 	{
 		"ellisonleao/gruvbox.nvim",
+		lazy = true,
 		priority = 1000,
 		config = true,
 		opts = {},
 	},
-	{ "mellow-theme/mellow.nvim" },
-	{ "marko-cerovac/material.nvim" },
-	{ "rebelot/kanagawa.nvim" },
-	{ "sainnhe/everforest" },
-	{ "ribru17/bamboo.nvim" },
+	{ "mellow-theme/mellow.nvim", lazy = true },
+	{ "marko-cerovac/material.nvim", lazy = true },
+	{ "sainnhe/everforest", lazy = true },
+	{ "ribru17/bamboo.nvim", lazy = true },
 }

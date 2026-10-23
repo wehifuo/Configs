@@ -32,8 +32,9 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --type text --watch cliphist store -max-items 40")
     hl.exec_cmd("wl-paste --type image --watch cliphist store -max-items 40")
     hl.exec_cmd("hyprpaper")
-    hl.exec_cmd("hypridle & ~/.config/hypr/scripts/low-battery.sh")
     hl.exec_cmd("~/.config/hypr/scripts/setup.sh")
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE")
+    hl.exec_cmd("systemctl --user start waybar.service swaync.service")
     hl.exec_cmd("hyprpm reload -n")
     -- hl.exec_cmd("hyprpm enable Hyprspace")
 end)
@@ -45,6 +46,11 @@ end)
 -- See https://wiki.hypr.land/configuring/core/environment-variables/
 hl.env("XCURSOR_SIZE", "20")
 hl.env("HYPRCURSOR_SIZE", "20")
+
+-- Чтобы GTK- и Qt-приложения использовали xdg-desktop-portal
+-- (в частности, FileChooser -> yazi)
+hl.env("GTK_USE_PORTAL", "1")
+hl.env("QT_QPA_PLATFORMTHEME", "xdgdesktopportal")
 
 
 -----------------------
@@ -147,6 +153,15 @@ hl.animation({ leaf = "zoomFactor",    enabled = true, speed = 7,    bezier = "q
 
 -- Чтобы убрать рамки когда одно окно на экране
 hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 1, gaps_in = 1 })
+hl.workspace_rule({ workspace = "f[1]", gaps_out = 1, gaps_in = 1 })
+
+
+-- -- Blur для панели waybar
+-- hl.layer_rule({
+--     name  = "waybar-blur",
+--     match = { namespace = "waybar" },
+--     blur = true,
+-- })
 
 
 -- See https://wiki.hypr.land/configuring/layouts/master-layout/ for more
@@ -292,13 +307,22 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),                
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 --
--- hl.window_rule({
---     name = "float-kitty-rule",
---     match = { class = "float-kitty" },
---     float = true,
---     size  = "1100 650",
--- })
---
+hl.window_rule({
+    name  = "yazi-picker",
+    match = { class = "yazi-picker" },
+    float = true,
+    size  = "900 700",
+    move  = "monitor_w/2-450 monitor_h/2-350",
+    stay_focused = true,
+})
+
+hl.window_rule({
+    name  = "float-kitty",
+    match = { class = "float-kitty" },
+    float = true,
+    size  = "900 700",
+    move  = "monitor_w/2-450 monitor_h/2-350",
+})
 
 ---------------
 ---- PLUGINS ---

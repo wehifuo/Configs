@@ -81,6 +81,10 @@ return {
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		event = "VeryLazy",
+		keys = {
+			{ "<A-Right>", "<cmd>BufferLineCycleNext<CR>", desc = "Следующий буфер" },
+			{ "<A-Left>", "<cmd>BufferLineCyclePrev<CR>", desc = "Предыдущий буфер" },
+		},
 		opts = {
 			options = {
 				mode = "tabs",
@@ -102,11 +106,4 @@ return {
 			},
 		},
 	},
-	config = function(_, opts)
-		require("bufferline").setup(opts)
-
-		-- Твои горячие клавиши (Оставляем как есть)
-		vim.keymap.set("n", "<A-Right>", "<cmd>BufferLineCycleNext<CR>", { desc = "Следующий буфер" })
-		vim.keymap.set("n", "<A-Left>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Предыдущая буфер" })
-	end,
 }

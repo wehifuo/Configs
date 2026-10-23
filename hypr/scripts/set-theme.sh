@@ -37,7 +37,4 @@ case $1 in
 esac
 
 
-pkill waybar
-sleep 0.2 # Даем системе "выдохнуть"
-waybar &> /dev/null &
-disown
+systemctl --user restart waybar.service

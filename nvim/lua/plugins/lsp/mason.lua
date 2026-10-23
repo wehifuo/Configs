@@ -7,7 +7,7 @@ return{
 			"tailwindcss",
 			"lua_ls",
 			"pyright",
-			"ast_grep"
+			"ast_grep",
 		}
 	},
     dependencies = {

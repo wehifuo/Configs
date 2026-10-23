@@ -2,11 +2,28 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ignorecase = true
 vim.opt.clipboard = "unnamedplus"
-vim.opt.tabstop = 3
-vim.opt.softtabstop = 3
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
+
+vim.opt.smartcase = true
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.undofile = true
+vim.opt.swapfile = false
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.mouse = "a"
+vim.opt.cursorline = false
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -38,6 +55,14 @@ require("lazy").setup({
 	checker = { enabled = true, notify = false },
 })
 
+-- LSP capabilities through cmp-nvim-lsp (loaded eagerly in plugins/lsp/lsp.lua)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local ok_cmp_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+if ok_cmp_lsp then
+	capabilities = cmp_lsp.default_capabilities(capabilities)
+end
+vim.lsp.config("*", { capabilities = capabilities })
+
 vim.cmd.colorscheme("kanagawa-dragon")
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -47,9 +72,19 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Make и Go требуют табы
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "make", "go" },
+	callback = function()
+		vim.opt_local.expandtab = false
+		vim.opt_local.tabstop = 4
+		vim.opt_local.softtabstop = 4
+		vim.opt_local.shiftwidth = 4
+	end,
+})
+
 vim.api.nvim_create_autocmd("BufReadPost", { -- Чтобы сразу работал treesitter
 	callback = function()
-
 		if vim.bo.filetype == "qf" then
 			return
 		end
@@ -79,11 +114,38 @@ local my_themes = {
 	"bamboo-multiplex",
 }
 
+-- Какая тема в каком lazy-плагине лежит
+local theme_plugins = {
+	gruvbox = "gruvbox.nvim",
+	flexoki = "flexoki",
+	["kanagawa-dragon"] = "kanagawa.nvim",
+	kanagawa = "kanagawa.nvim",
+	["kanagawa-paper-ink"] = "kanagawa-paper.nvim",
+	["kanagawa-paper-canvas"] = "kanagawa-paper.nvim",
+	lackluster = "lackluster.nvim",
+	["lackluster-night"] = "lackluster.nvim",
+	["lackluster-mint"] = "lackluster.nvim",
+	["lackluster-dark"] = "lackluster.nvim",
+	["lackluster-hack"] = "lackluster.nvim",
+	mellow = "mellow.nvim",
+	material = "material.nvim",
+	["material-lighter"] = "material.nvim",
+	everforest = "everforest",
+	bamboo = "bamboo.nvim",
+	["bamboo-multiplex"] = "bamboo.nvim",
+}
+
 vim.api.nvim_create_user_command("MyThemes", function()
 	vim.ui.select(my_themes, {
 		prompt = "Выберите тему из списка избранных:",
 	}, function(choice)
 		if choice then
+			local plugin = theme_plugins[choice]
+			if plugin then
+				pcall(function()
+					require("lazy").load({ plugins = { plugin } })
+				end)
+			end
 			vim.cmd.colorscheme(choice)
 		end
 	end)

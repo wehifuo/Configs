@@ -45,18 +45,14 @@ return {
 	{
 		"Wansmer/treesj",
 		keys = {
-			"<space>m",
-			"<space>j",
-			"<space>s",
+			{ "<leader>m", function() require("treesj").toggle() end, desc = "Toggle split/join" },
+			{ "<leader>j", function() require("treesj").join() end, desc = "Join" },
+			{ "<leader>s", function() require("treesj").split() end, desc = "Split" },
 		},
 		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
 		opts = {
 			max_join_length = 300,
 		},
-		config = function()
-			require("treesj").setup({ --[[ your config ]]
-			})
-		end,
 	},
 	{
 		{
