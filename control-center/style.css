@@ -1,0 +1,528 @@
+/* ============================================================
+   Control Center — monochrome Orbit theme
+   Palette matches the black-and-white Hyprland setup.
+   ============================================================ */
+
+@define-color bg #0b0b0c;
+@define-color surface #141415;
+@define-color surface2 #1d1d1f;
+@define-color surface3 #2a2a2d;
+@define-color text #f2f2f2;
+@define-color subtext #c9c9cc;
+@define-color muted #8a8a90;
+@define-color faint #55555a;
+@define-color accent #f2f2f2;
+@define-color accent_soft rgba(255, 255, 255, 0.12);
+@define-color accent_line rgba(255, 255, 255, 0.20);
+@define-color error #e6e6e6;
+@define-color success #ffffff;
+@define-color line rgba(255, 255, 255, 0.08);
+
+* {
+    font-family: "Adwaita Sans", "DejaVu Sans", sans-serif;
+    font-size: 13px;
+    color: @text;
+    outline: none;
+}
+
+window.control-center,
+window.cc-dim {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.dim-bg {
+    /* Nearly invisible scrim: keeps the click-outside surface without a visible
+       full-screen rectangle. */
+    background-color: rgba(5, 4, 8, 0.01);
+}
+
+.panel {
+    margin: 0;
+    padding: 18px;
+    background-color: rgba(13, 13, 14, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    box-shadow: none;
+}
+
+.page {
+    background: transparent;
+}
+
+/* ---------------------------------------------------------------- typography */
+
+.page-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    font-size: 11px;
+    color: @muted;
+}
+
+.tile-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.tile-subtitle {
+    font-size: 11px;
+    color: @muted;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.row-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.row-meta {
+    font-size: 11px;
+    color: @muted;
+}
+
+.muted {
+    color: @muted;
+}
+
+.muted-small {
+    font-size: 10px;
+    color: @muted;
+}
+
+.muted-icon {
+    color: @faint;
+}
+
+.empty-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.error-text {
+    font-size: 11px;
+    color: @error;
+}
+
+.section-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: @muted;
+}
+
+.count-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: @subtext;
+    background-color: @surface2;
+    border-radius: 999px;
+    padding: 1px 7px;
+}
+
+.keycap {
+    font-size: 9px;
+    font-weight: 700;
+    color: @subtext;
+    background-color: @surface2;
+    border: 1px solid @line;
+    border-radius: 6px;
+    padding: 2px 7px;
+}
+
+/* ------------------------------------------------------------------- icons */
+
+.icon {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: 400;
+}
+
+.icon-xs { font-size: 11px; }
+.icon-sm { font-size: 14px; }
+.icon-md { font-size: 18px; }
+.icon-lg { font-size: 24px; }
+.icon-xl { font-size: 32px; }
+
+/* ------------------------------------------------------------------
+   Точная подстройка иконок.
+   Увеличивайте margin-left, чтобы сдвинуть конкретный глиф вправо.
+   Например: margin-left: 2px;  (для сдвига влево — отрицательное значение)
+   ------------------------------------------------------------------ */
+.tile-wifi-icon { margin-left: -7px; }
+.tile-bluetooth-icon { margin-left: 0px; }
+.tile-wifi-box { margin-left: 0px; }
+.tile-bluetooth-box { margin-left: 0px; }
+.row-wifi-icon { margin-left: 0px; }
+.row-bluetooth-icon { margin-left: 0px; }
+.network-row .row-icon { margin-left: 0px; }
+
+.brand-icon {
+    color: @accent;
+    min-width: 30px;
+}
+
+.brand-logo {
+    min-width: 28px;
+    min-height: 28px;
+}
+
+.brand-emoji {
+    font-family: "Noto Color Emoji";
+    font-size: 21px;
+    min-width: 30px;
+}
+
+.accent-icon {
+    color: @accent;
+}
+
+/* ------------------------------------------------------------------ header */
+
+headerbar {
+    background: transparent;
+}
+
+/* ------------------------------------------------------------------- tiles */
+
+.tile {
+    padding: 0;
+    min-height: 124px;
+    background-color: @surface;
+    border: 1px solid @line;
+    border-radius: 18px;
+    box-shadow: none;
+    transition: 160ms ease;
+}
+
+.tile:hover {
+    background-color: #1b1b1d;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.tile.on {
+    border-color: @accent_line;
+    background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
+}
+
+.tile-icon {
+    padding: 0;
+    min-width: 42px;
+    min-height: 42px;
+    border-radius: 13px;
+    background-color: rgba(255, 255, 255, 0.055);
+    color: @muted;
+}
+
+.tile-icon.on {
+    background-color: @accent_soft;
+    color: @accent;
+}
+
+/* -------------------------------------------------------------------- card */
+
+.card {
+    background-color: @surface;
+    border: 1px solid @line;
+    border-radius: 16px;
+}
+
+button.card {
+    padding: 0;
+    background-color: @surface;
+    box-shadow: none;
+}
+
+button.card:hover {
+    background-color: #1b1b1d;
+}
+
+/* -------------------------------------------------------------------- rows */
+
+button.row {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.row {
+    border-radius: 12px;
+    transition: 120ms ease;
+}
+
+button.row:hover,
+.row:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+button.row.active,
+.row.active {
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+button.row.active .row-icon {
+    color: @accent;
+}
+
+button.row.network-row {
+    background-color: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.045);
+    margin: 1px 0;
+}
+
+button.row.network-row:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+button.row.network-row.active {
+    background-color: rgba(255, 255, 255, 0.10);
+    border-color: @accent_line;
+}
+
+.device-row {
+    background-color: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.045);
+    margin: 1px 0;
+}
+
+.device-row:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+}
+
+.row-icon {
+    color: @muted;
+    min-width: 24px;
+}
+
+.row-lock {
+    color: @faint;
+}
+
+.row-check {
+    color: #ffffff;
+}
+
+.signal-good { color: #ffffff; }
+.signal-ok { color: #b9b9be; }
+.signal-weak { color: #707076; }
+
+.device-icon {
+    padding: 7px;
+    border-radius: 11px;
+    background-color: rgba(255, 255, 255, 0.055);
+    color: @accent;
+    min-width: 18px;
+}
+
+.row.connected .device-icon {
+    background-color: @accent_soft;
+}
+
+/* ------------------------------------------------------------------ badges */
+
+.badge {
+    font-size: 9px;
+    font-weight: 700;
+    color: @subtext;
+    background-color: @surface2;
+    border-radius: 999px;
+    padding: 2px 7px;
+}
+
+.badge.success {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: @success;
+}
+
+.badge.muted {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: @muted;
+}
+
+/* ----------------------------------------------------------------- buttons */
+
+button {
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.pill {
+    background-color: @surface2;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 0;
+}
+
+.pill:hover {
+    background-color: @surface3;
+}
+
+.pill.accent {
+    background-color: @accent_soft;
+    color: @accent;
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.pill.accent:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+}
+
+.pill.danger {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: @error;
+}
+
+.pill.danger:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.pill.mini {
+    font-size: 10px;
+    padding: 3px 8px;
+}
+
+.icon-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 4px;
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.danger-icon {
+    color: #c9c9cd;
+}
+
+.trust-icon {
+    color: #ffffff;
+}
+
+.armed {
+    background-color: rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+}
+
+/* ------------------------------------------------------------------ switch */
+
+switch {
+    background-color: @surface3;
+    border: 1px solid @line;
+    border-radius: 999px;
+    min-width: 38px;
+    min-height: 21px;
+    padding: 0;
+    transition: 160ms ease;
+}
+
+switch:checked {
+    background-color: @accent;
+    border-color: @accent;
+}
+
+switch slider {
+    background-color: @subtext;
+    border-radius: 999px;
+    min-width: 15px;
+    min-height: 15px;
+    margin: 2px;
+}
+
+switch:checked slider {
+    background-color: @bg;
+}
+
+/* ------------------------------------------------------------------- entry */
+
+entry {
+    background-color: @surface2;
+    color: @text;
+    border: 1px solid @line;
+    border-radius: 10px;
+    padding: 7px 10px;
+    caret-color: @accent;
+}
+
+entry:focus {
+    border-color: @accent;
+    background-color: #222224;
+}
+
+entry image {
+    color: @muted;
+}
+
+/* --------------------------------------------------------------- separators */
+
+.divider {
+    background-color: @line;
+    min-height: 1px;
+    margin: 0;
+}
+
+/* --------------------------------------------------------------- scrollbars */
+
+.page-scroll {
+    background: transparent;
+}
+
+scrollbar.vertical {
+    background: transparent;
+    min-width: 5px;
+}
+
+scrollbar.vertical slider {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    min-width: 4px;
+    min-height: 28px;
+}
+
+scrollbar.vertical slider:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+}
+
+spinner {
+    color: @accent;
+}
+
+/* -------------------------------------------------------------------- toast */
+
+.toast {
+    border-radius: 14px;
+    background-color: rgba(38, 37, 41, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.toast.error {
+    background-color: rgba(48, 48, 50, 0.98);
+    border-color: rgba(255, 255, 255, 0.38);
+}
+
+.toast.ok {
+    background-color: rgba(40, 40, 42, 0.98);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.toast-text {
+    font-size: 12px;
+}

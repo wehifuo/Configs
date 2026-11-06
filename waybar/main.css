@@ -76,6 +76,7 @@ tooltip label {
 #backlight,
 #battery,
 #pulseaudio,
+#custom-bluetooth,
 #network,
 #temperature {
     color: #E1CCC4;
@@ -84,6 +85,22 @@ tooltip label {
     margin: 0 0 0 12px;
     border-radius: 10px;
     border: 1px solid #37373e;
+}
+
+#custom-bluetooth {
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+#custom-bluetooth.connected {
+    color: #ffffff;
+}
+
+#custom-bluetooth.on {
+    color: #ffffff;
+}
+
+#custom-bluetooth.disabled {
+    color: #777380;
 }
 
 

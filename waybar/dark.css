@@ -12,6 +12,7 @@
 
 window#waybar {
     background: transparent;
+    border-bottom: 0px solid #1f1f26;
 }
 
 
@@ -37,7 +38,7 @@ tooltip label {
 
 #workspaces button {
     padding: 1px 10px;
-    margin: 0px 4px;
+    margin: 0px 5px;
     border-radius: 8px;
     color: transparent;
     background-color: #777380;
@@ -75,6 +76,7 @@ tooltip label {
 #backlight,
 #battery,
 #pulseaudio,
+#custom-bluetooth,
 #network,
 #temperature {
 	 font-family: "Font";
@@ -84,6 +86,23 @@ tooltip label {
     margin: 0 0 0 10px;
     border-radius: 10px;
     border: 1px solid #37373e;
+}
+
+#custom-bluetooth {
+    font-family: "JetBrainsMono Nerd Font";
+    padding: 0 15px 0 15px;
+}
+
+#custom-bluetooth.connected {
+    color: #ffffff;
+}
+
+#custom-bluetooth.on {
+    color: #ffffff;
+}
+
+#custom-bluetooth.disabled {
+    color: #6c6972;
 }
 #custom-weather{
 	 padding: 0 10px 0 5px;

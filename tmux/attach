@@ -1,0 +1,61 @@
+#!/bin/sh
+# Ручной запуск tmux: подключиться к сессии "main" или создать её.
+# Использование: ~/.config/tmux/attach
+#
+# Логика:
+#   1. Если сессия "main" уже есть — просто подключаемся.
+#   2. Если сервер tmux уже запущен с другими сессиями — подключаемся к последней.
+#   3. Если сервера нет — создаём временную сессию, чтобы сервер не завершился,
+#      и ждём, пока tmux-continuum восстановит сохранённые сессии.
+#      Если восстанавливать нечего — переименовываем временную сессию в "main".
+#
+# Если скрипт запущен внутри панели tmux — просто запускаем обычный shell.
+
+SESSION="main"
+HOLD="__tmux_boot__"
+
+case "$TERM" in
+    screen*|tmux*)
+        exec "${SHELL:-/usr/bin/fish}"
+        ;;
+esac
+
+# Окно терминала могло быть запущено изнутри tmux и унаследовать $TMUX.
+# Нам нужен отдельный клиент, поэтому убираем переменную.
+unset TMUX
+
+# 1. Уже есть основная сессия
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+    exec tmux attach -t "$SESSION"
+fi
+
+# 2. Сервер жив и есть другие сессии (например, после restore)
+target="$(tmux list-sessions -F '#{session_name}' 2>/dev/null | grep -vx "$HOLD" | tail -n 1)"
+if [ -n "$target" ]; then
+    exec tmux attach -t "$target"
+fi
+
+# 3. Сервера нет — держим его временной сессией, пока continuum восстанавливает
+if ! tmux has-session -t "$HOLD" 2>/dev/null; then
+    tmux new-session -d -s "$HOLD" || exit 1
+fi
+
+i=0
+while [ "$i" -lt 40 ]; do
+    sleep 0.1
+    target="$(tmux list-sessions -F '#{session_name}' 2>/dev/null | grep -vx "$HOLD" | head -n 1)"
+    if [ -n "$target" ]; then
+        tmux kill-session -t "$HOLD" 2>/dev/null
+        exec tmux attach -t "$target"
+    fi
+    i=$((i + 1))
+done
+
+# Ничего не восстановилось — делаем временную сессию основной
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+    tmux kill-session -t "$HOLD" 2>/dev/null
+else
+    tmux rename-session -t "$HOLD" "$SESSION"
+fi
+
+exec tmux attach -t "$SESSION"

@@ -12,9 +12,16 @@
 !/nvim/
 !/hypr/
 !/kitty/
+!/tmux/
+# TPM-плагины не храним в репозитории
+/tmux/plugins/
 !/rofi/
 !/waybar/
 !/yazi/
 !/fastfetch/
 !/all/
 !/assets/
+!/control-center/
+# Python bytecode не храним
+/control-center/__pycache__/
+/control-center/cc/__pycache__/

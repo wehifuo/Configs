@@ -1,0 +1,133 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "Dejavu sans mono";
+    font-size: 14px;
+    font-weight: 600;
+
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* Сплошная тонкая полоса на всю ширину */
+window#waybar {
+    background: #090A0D;
+    border-bottom: 1px solid #1f1f26;
+}
+
+tooltip {
+    background: #090A0D;
+    border: 1px solid #37373e;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: #959595;
+    padding: 0 8px 0 0;
+}
+
+#workspaces {
+    background-color: transparent;
+    padding: 0 10px;
+    margin: 3px;
+    border-radius: 0;
+    border: none;
+}
+
+#workspaces button {
+    padding: 0 11px;
+    margin: 1px 3px;
+    border-radius: 6px;
+    color: transparent;
+    background-color: #3a3a42;
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+    background-color: #E9E9E9;
+    color: #090A0D;
+    min-width: 26px;
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button:hover {
+    background-color: #959595;
+    color: #090A0D;
+    border-radius: 6px;
+}
+
+#workspaces button.urgent {
+    background-color: #BF2626;
+    color: #959595;
+    border-radius: 6px;
+}
+
+#custom-weather,
+#backlight,
+#battery,
+#pulseaudio,
+#custom-bluetooth,
+#network,
+#temperature {
+    font-family: "Font";
+    color: #E9E9E9;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 10px;
+    margin: 0;
+}
+
+#custom-bluetooth {
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+#custom-bluetooth.connected {
+    color: #ffffff;
+}
+
+#custom-bluetooth.on {
+    color: #ffffff;
+}
+
+#custom-bluetooth.disabled {
+    color: #6c6972;
+}
+
+#custom-weather {
+    padding: 0 10px 0 6px;
+}
+
+#battery.warning {
+    color: #F29B88;
+}
+
+#battery.critical {
+    color: #BF2626;
+}
+
+#battery.charging {
+    color: #99d38a;
+}
+
+#clock {
+    color: #E9E9E9;
+    background-color: #090A0D;
+    padding: 3px 15px 0 15px;
+    margin: 0 0 0 12px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+#temperature.warning {
+    color: #F29B88;
+}
+
+#temperature.critical {
+    color: #BF2626;
+}
+
+#custom-spotify {
+    margin: 0 15px 0 0;
+}

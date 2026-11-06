@@ -164,6 +164,14 @@ hl.workspace_rule({ workspace = "f[1]", gaps_out = 1, gaps_in = 1 })
 --     blur = true,
 -- })
 
+-- Control Center (GTK4 + gtk4-layer-shell)
+-- Панель размывает фон, полноэкранный dim-слой остаётся без анимации.
+hl.layer_rule({
+	name = "control-center-overlay",
+	match = { namespace = "^control-center-overlay$" },
+	no_anim = true,
+})
+
 -- See https://wiki.hypr.land/configuring/layouts/master-layout/ for more
 hl.config({
 	master = {
@@ -244,6 +252,11 @@ hl.bind(mainMod .. " + G", hl.dsp.layout("togglesplit"))
 
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("Telegram"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/waybar/scripts/toogle.sh"))
+hl.bind(
+	mainMod .. " + SHIFT + W",
+	hl.dsp.exec_cmd("~/.config/control-center/launch.sh --toggle"),
+	{ description = "Control Center (Wi-Fi / Bluetooth)" }
+)
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("hyprlock"))
 
 -- Clipboard history

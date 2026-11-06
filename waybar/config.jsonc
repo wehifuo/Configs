@@ -12,6 +12,7 @@
 		  "custom/spotify",
         "backlight",
         "pulseaudio",
+        "custom/bluetooth",
         "network",
         "battery"
     ],
@@ -87,6 +88,13 @@
             "Easy Effects Sink"
         ]
     },
+    "custom/bluetooth": {
+        "exec": "$HOME/.config/control-center/waybar-bluetooth.py",
+        "return-type": "json",
+        "interval": 5,
+        "tooltip": true,
+        "on-click": "$HOME/.config/control-center/launch.sh --page bluetooth",
+    },
     "network": {
         "interface": "wlan0",
         "format": "{ifname}",
@@ -97,7 +105,9 @@
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} ",
         "tooltip-format-disconnected": "Disconnected",
-        "max-length": 50
+        "max-length": 50,
+        "on-click": "$HOME/.config/control-center/launch.sh --page wifi",
+        "on-click-right": "$HOME/.config/control-center/launch.sh --page bluetooth",
     },
     "battery": {
         "interval": 60,

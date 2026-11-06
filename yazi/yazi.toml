@@ -70,6 +70,9 @@ download = [
 	{ run = "ya emit download %S",        desc = "Download" },
 ]
 
+wolfram = [
+    { run = 'mathematica "$@"', orphan = true, desc = "Wolfram Mathematica" }
+]
 
 [open]
 rules = [
@@ -85,6 +88,8 @@ rules = [
 	# Media
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	
+    { mime = "*.nb", use = "wolfram" },
+    { mime = "*.cdf", use = "wolfram" },
 	# Доделать
    # # Docx
    # { mime = "application/docx", name = "*.docx", use = "Open" },
